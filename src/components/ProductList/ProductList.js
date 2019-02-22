@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ProductListItem from './ProductListItem';
 
 import products from './phones/phones';
 
@@ -25,13 +25,12 @@ class ProductList extends Component {
           <div className="col-md-10">
             <ul className="phones">
               {products.map(product => (
-                <li className="thumbnail">
-                  <Link className="thumb" to={product.id}>
-                    <img src={imagesURL + product.imageUrl} alt="" />
-                  </Link>
-                  <Link to={product.id}>{product.name}</Link>
-                  <p>{product.snippet}</p>
-                </li>
+                <ProductListItem
+                  id={product.id}
+                  imgURL={imagesURL + product.imageUrl}
+                  title={product.name}
+                  snippet={product.snippet}
+                />
               ))}
             </ul>
           </div>
