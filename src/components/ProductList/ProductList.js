@@ -1,38 +1,69 @@
 import React, { Component } from 'react';
-import ProductListItem from './ProductListItem';
+import ProductListItem from '../ProductListItem';
+import ListSearchForm from '../ListSearchForm';
 
 import products from './phones/phones';
 
 class ProductList extends Component {
+
+  newestSort = (a, b) => {
+    return a.age - b.age
+  };
+
+  alphabeticalSort = (a, b) => {
+    return (a.name < b.age) - (a.name > b.age)
+  };
+
+  state = {
+    products: [...products],
+    searchQuery: '',
+    sortAs: this.newestSort
+  };
+
+  handleSearchQuery = (e) => {
+    this.setState({
+      searchQuery: e.target.value
+    })
+  };
+
+  handleSelectSortMethod = (e) => {
+
+    e.target.value === 'newest'
+      ? this.setState({
+      sortAs: this.newestSort
+      })
+      : this.setState({
+        sortAs: this.alphabeticalSort
+      })
+  };
+
   render() {
     const imagesURL =
       'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/';
+    const { searchQuery, products, sortAs } = this.state;
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-2">
-            <p>
-              Search: <input type="text" />
-            </p>
-            <p>
-              Sort by:
-              <select name="" id="">
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-              </select>
-            </p>
-          </div>
+          <ListSearchForm
+            query={searchQuery}
+            handleInput={this.handleSearchQuery}
+            handleSelectBtn={this.handleSelectSortMethod}
+          />
           <div className="col-md-10">
-            <ul className="phones">
-              {products.map(product => (
+            <div className="phones">
+              {products
+                .filter(i => i.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                .sort(sortAs)
+                .map(product => (
                 <ProductListItem
+                  key={product.id}
                   id={product.id}
                   imgURL={imagesURL + product.imageUrl}
                   title={product.name}
                   snippet={product.snippet}
                 />
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
