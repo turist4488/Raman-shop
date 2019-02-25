@@ -32,6 +32,7 @@ class ProductDetails extends Component {
       .catch(error => this.setState({ error: error.message }));
   }
 
+  //image gallery handler
   handleImgClick = img => {
     this.setState({
       bigImg: img,
@@ -53,7 +54,7 @@ class ProductDetails extends Component {
 
     return (
       <div className="product__details container-fluid">
-        <div className="d-flex">
+        <div className="d-flex mt-3">
           <div className="col-sm-4 product__big-img mr-4">
             <img
               className="p-3 d-block w-100 h-auto"
@@ -83,28 +84,29 @@ class ProductDetails extends Component {
             </ul>
           </div>
         </div>
-        <div className="product__specs d-flex flex-wrap mb-5">
-          <ProductSpecs
-            title="Availability and Networks"
-            specArrName="Availability"
-            value={data.availability}
-          />
-          <ProductSpecs title="Battery" value={data.battery} />
-          <ProductSpecs title="Storage and Memory" value={data.storage} />
-          <ProductSpecs title="Connectivity" value={data.connectivity} />
-          <ProductSpecs title="Android" value={data.android} />
-          <ProductSpecs title="Size and Weight" value={data.sizeAndWeight} />
-          <ProductSpecs title="Display" value={data.display} />
-          <ProductSpecs title="Hardware" value={data.hardware} />
-          <ProductSpecs title="Camera" value={data.camera} />
-          <ProductSpecs
-            title="Additional Features"
-            value={data.additionalFeatures}
-          />
+        <div className="product__specs row py-4">
+          <div className="container-fluid d-flex flex-wrap">
+            <ProductSpecs
+              title="Availability and Networks"
+              specArrName="Availability"
+              value={data.availability}
+            />
+            <ProductSpecs title="Battery" value={data.battery} />
+            <ProductSpecs title="Storage and Memory" value={data.storage} />
+            <ProductSpecs title="Connectivity" value={data.connectivity} />
+            <ProductSpecs title="Android" value={data.android} />
+            <ProductSpecs title="Size and Weight" value={data.sizeAndWeight} />
+            <ProductSpecs title="Display" value={data.display} />
+            <ProductSpecs title="Hardware" value={data.hardware} />
+            <ProductSpecs title="Camera" value={data.camera} />
+            <ProductSpecs
+              title="Additional Features"
+              value={data.additionalFeatures}
+            />
+          </div>
         </div>
       </div>
     );
   }
 }
-
 export default ProductDetails;
