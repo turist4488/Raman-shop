@@ -1,68 +1,77 @@
 import React, { Component } from 'react';
 import ProductListItem from '../ProductListItem';
 import ListSearchForm from '../ListSearchForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import products from './phones/phones';
+const dataURL =
+  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones/phones.json';
 
 class ProductList extends Component {
-
-  newestSort = (a, b) => {
-    return a.age - b.age
-  };
-
-  alphabeticalSort = (a, b) => {
-    return (a.name < b.age) - (a.name > b.age)
-  };
-
   state = {
-    products: [...products],
+    products: [],
     searchQuery: '',
-    sortAs: this.newestSort
+    error: '',
   };
 
-  handleSearchQuery = (e) => {
+  componentDidMount() {
+    fetch(dataURL)
+      .then(response => {
+        if (response.status === 404) throw new Error('Failed to load data!');
+        return response.json();
+      })
+      .then(dataJSON =>
+        this.setState({
+          products: [...dataJSON],
+        })
+      )
+      .catch(e => {
+        this.setState({
+          error: e.message,
+        });
+      });
+  }
+
+  handleSearchQuery = e => {
     this.setState({
-      searchQuery: e.target.value
-    })
+      searchQuery: e.target.value,
+    });
   };
 
-  handleSelectSortMethod = (e) => {
-
-    e.target.value === 'newest'
-      ? this.setState({
-      sortAs: this.newestSort
-      })
-      : this.setState({
-        sortAs: this.alphabeticalSort
-      })
-  };
+  handleSelectSortMethod = e => {};
 
   render() {
     const imagesURL =
       'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/';
-    const { searchQuery, products, sortAs } = this.state;
+    const { searchQuery, products, error } = this.state;
+
+    if (error) {
+      return <h1 style={{ color: 'red' }}>{error}</h1>;
+    }
+
     return (
       <div className="container-fluid">
         <div className="row">
           <ListSearchForm
+            className="col-md-2"
             query={searchQuery}
             handleInput={this.handleSearchQuery}
             handleSelectBtn={this.handleSelectSortMethod}
           />
-          <div className="col-md-10">
-            <div className="phones">
+          <div className="col-md-9 ml-auto">
+            <div className="d-flex flex-wrap">
               {products
-                .filter(i => i.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                .sort(sortAs)
+                .filter(i =>
+                  i.name.toLowerCase().includes(searchQuery.toLowerCase())
+                )
                 .map(product => (
-                <ProductListItem
-                  key={product.id}
-                  id={product.id}
-                  imgURL={imagesURL + product.imageUrl}
-                  title={product.name}
-                  snippet={product.snippet}
-                />
-              ))}
+                  <ProductListItem
+                    key={product.id}
+                    id={product.id}
+                    imgURL={imagesURL + product.imageUrl}
+                    title={product.name}
+                    snippet={product.snippet}
+                  />
+                ))}
             </div>
           </div>
         </div>

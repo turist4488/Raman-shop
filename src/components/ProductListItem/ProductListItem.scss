@@ -1,8 +1,7 @@
-.thumb {
-  float: left;
-  margin: -0.5em 1em 1.5em 0;
-  padding-bottom: 1em;
-  height: 100px;
-  width: 100px;
+.product-list {
+  &__item {
+    border: 1px solid silver;
+    border-radius: 5px;
+  }
 }
 
