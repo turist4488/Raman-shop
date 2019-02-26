@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ListSearchForm extends Component {
   render() {
     const { query, handleInput, handleSelectBtn } = this.props;
     return (
-      <div className="col-md-2">
-        <div>
+      <div className="col-md-2 m-3">
+        <div className="mb-3">
           <label htmlFor="list-search">Search:</label>
           <input
             type="text"
@@ -16,10 +17,10 @@ class ListSearchForm extends Component {
           />
         </div>
         <div>
-          <label htmlFor="list-sort">Sort by: </label>
+          <label className="mr-3" htmlFor="list-sort">Sort by: </label>
           <select name="" id="list-sort" onChange={handleSelectBtn}>
-            <option value="alphabetical">Newest</option>
-            <option value="newest">Alphabetical</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="newest">Newest</option>
           </select>
         </div>
       </div>

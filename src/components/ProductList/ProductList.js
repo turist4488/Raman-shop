@@ -10,6 +10,7 @@ class ProductList extends Component {
   state = {
     products: [],
     searchQuery: '',
+    sortType: 'alphabetical',
     error: '',
   };
 
@@ -37,12 +38,27 @@ class ProductList extends Component {
     });
   };
 
-  handleSelectSortMethod = e => {};
+  handleSelectSortMethod = e => {
+    this.setState({
+      sortType: e.target.value
+    })
+  };
+
+  getSortComparator = (type) => {
+    switch (type) {
+      case 'newest': return (a,b)=>{
+        return b.age - a.age
+      };
+      case 'alphabetical': return (a,b)=>{
+        return (a.name > b.name) - (a.name < b.name)
+      };
+    }
+  };
 
   render() {
     const imagesURL =
       'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/';
-    const { searchQuery, products, error } = this.state;
+    const { searchQuery, products, sortType, error } = this.state;
 
     if (error) {
       return <h1 style={{ color: 'red' }}>{error}</h1>;
@@ -63,6 +79,7 @@ class ProductList extends Component {
                 .filter(i =>
                   i.name.toLowerCase().includes(searchQuery.toLowerCase())
                 )
+                .sort(this.getSortComparator(sortType))
                 .map(product => (
                   <ProductListItem
                     key={product.id}
