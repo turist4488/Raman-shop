@@ -8,11 +8,11 @@ class ProductListItem extends Component {
     const { id, imgURL, title, snippet } = this.props;
     return (
       <div className="d-sm-flex col-sm-12 product-list__item align-items-center p-2">
-        <Link className="col-5" to={id}>
+        <Link className="col-5" to={`/products/${id}`}>
           <img className="w-100 h-auto" src={imgURL} alt="" />
         </Link>
         <div className="">
-          <Link to={id}>
+          <Link to={`/products/${id}`}>
             {title}
           </Link>
           <p>{snippet}</p>

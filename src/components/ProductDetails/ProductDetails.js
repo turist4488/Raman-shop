@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from '../Loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ProductDetails.scss';
 import ProductSpecs from '../ProductSpecs';
@@ -46,7 +47,7 @@ class ProductDetails extends Component {
       return <h1 style={{ color: 'red' }}>{error}</h1>;
     }
     if (!data) {
-      return <div>Loading of data</div>;
+      return <Loader/>;
     }
 
     const productImages = data.images.map(item => imagesURL + item);
@@ -84,7 +85,7 @@ class ProductDetails extends Component {
           </div>
         </div>
         <div className="product__specs row py-4">
-          <div className="container-fluid d-flex">
+          <div className="container-fluid d-flex flex-wrap">
             <ProductSpecs
               title="Availability and Networks"
               specArrName="Availability"

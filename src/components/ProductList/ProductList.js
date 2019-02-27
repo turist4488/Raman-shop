@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ProductListItem from '../ProductListItem';
 import ListSearchForm from '../ListSearchForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loader from '../Loader';
 
 const dataURL =
   'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones/phones.json';
 
 class ProductList extends Component {
   state = {
-    products: [],
+    products: null,
     searchQuery: '',
     sortType: 'alphabetical',
     error: '',
@@ -62,6 +63,10 @@ class ProductList extends Component {
 
     if (error) {
       return <h1 style={{ color: 'red' }}>{error}</h1>;
+    }
+
+    if (!products) {
+      return <Loader />;
     }
 
     return (
