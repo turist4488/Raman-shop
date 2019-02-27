@@ -68,13 +68,12 @@ class ProductList extends Component {
       <div className="container-fluid">
         <div className="row">
           <ListSearchForm
-            className="col-md-2"
             query={searchQuery}
             handleInput={this.handleSearchQuery}
             handleSelectBtn={this.handleSelectSortMethod}
           />
-          <div className="col-md-9 ml-auto">
-            <div className="d-flex flex-wrap">
+          <div className="col-md-12 mx-auto">
+            <div className="d-flex product-list justify-content-between flex-wrap">
               {products
                 .filter(i =>
                   i.name.toLowerCase().includes(searchQuery.toLowerCase())

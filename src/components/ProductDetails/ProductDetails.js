@@ -45,7 +45,6 @@ class ProductDetails extends Component {
     if (error) {
       return <h1 style={{ color: 'red' }}>{error}</h1>;
     }
-
     if (!data) {
       return <div>Loading of data</div>;
     }
@@ -55,7 +54,7 @@ class ProductDetails extends Component {
     return (
       <div className="product__details container-fluid">
         <div className="d-flex mt-3">
-          <div className="col-sm-4 product__big-img mr-4">
+          <div className="col-sm-4 align-self-start product__big-img mr-4">
             <img
               className="p-3 d-block w-100 h-auto"
               src={bigImg}
@@ -72,12 +71,12 @@ class ProductDetails extends Component {
                     key={data.id + (i + 1)}
                     className={
                       bigImg === item
-                        ? 'product__thumbs-item product__thumbs-item--active col-sm-2 m-2 list-unstyled'
-                        : 'product__thumbs-item col-sm-2 m-2 list-unstyled'
+                        ? 'product__thumbs-item product__thumbs-item--active col-sm-2 p-2 m-2 list-unstyled'
+                        : 'product__thumbs-item col-sm-2 p-2 m-2 list-unstyled'
                     }
                     onClick={() => this.handleImgClick(item)}
                   >
-                    <img className="w-100 h-auto" src={item} alt="product" />
+                    <img className="d-block w-100 h-auto" src={item} alt="product" />
                   </li>
                 );
               })}
@@ -85,7 +84,7 @@ class ProductDetails extends Component {
           </div>
         </div>
         <div className="product__specs row py-4">
-          <div className="container-fluid d-flex flex-wrap">
+          <div className="container-fluid d-flex">
             <ProductSpecs
               title="Availability and Networks"
               specArrName="Availability"

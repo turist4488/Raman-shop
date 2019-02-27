@@ -1,5 +1,7 @@
 .product-list {
   &__item {
+    margin: 10px;
+    flex: 2 1 30%;
     border: 1px solid silver;
     border-radius: 5px;
   }
