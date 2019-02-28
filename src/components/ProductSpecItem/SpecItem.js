@@ -27,7 +27,9 @@ class SpecItem extends Component {
                     {this.getBooleanIcon(v[1])}
                   </span>
                 ) : (
-                  <span className="d-block spec-value">{v[1]}</span>
+                  <span className="d-block spec-value">
+                    {Array.isArray(v[1]) ? v[1].map(i => <span>{i}<br/></span>) : v[1]}
+                  </span>
                 )}
               </div>
             );
