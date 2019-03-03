@@ -4,6 +4,27 @@
     flex: 2 1 30%;
     border: 1px solid silver;
     border-radius: 5px;
+
+    .to-cart-btn {
+      font-size: 14px;
+      border: 1px solid silver;
+      box-shadow: none;
+      background-color: yellowgreen;
+      color: #2d2d2d;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 0.1s linear;
+      &:hover {
+        transform: scale(0.9);
+      }
+    }
+
+    &:hover .to-cart-btn {
+      opacity: 1;
+    }
   }
 }
 

@@ -3,34 +3,17 @@ import ProductListItem from '../ProductListItem';
 import ListSearchForm from '../ListSearchForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from '../Loader';
-
-const dataURL =
-  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones/phones.json';
+import * as actions from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class ProductList extends Component {
   state = {
-    products: null,
     searchQuery: '',
     sortType: 'alphabetical',
-    error: '',
   };
 
   componentDidMount() {
-    fetch(dataURL)
-      .then(response => {
-        if (response.status === 404) throw new Error('Failed to load data!');
-        return response.json();
-      })
-      .then(dataJSON =>
-        this.setState({
-          products: [...dataJSON],
-        })
-      )
-      .catch(e => {
-        this.setState({
-          error: e.message,
-        });
-      });
+    this.props.dispatch(actions.getProducts());
   }
 
   handleSearchQuery = e => {
@@ -57,16 +40,26 @@ class ProductList extends Component {
   };
 
   render() {
+
+    const {
+      products,
+      dataLoading,
+      fetchError,
+    } = this.props;
+
+    const { searchQuery, sortType } = this.state;
+
     const imagesURL =
       'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/';
-    const { searchQuery, products, sortType, error } = this.state;
 
-    if (error) {
-      return <h1 style={{ color: 'red' }}>{error}</h1>;
+    if (dataLoading) {
+      return <Loader />;
     }
 
-    if (!products) {
-      return <Loader />;
+    if (fetchError) {
+      return (
+        <div>{fetchError}</div>
+      );
     }
 
     return (
@@ -101,4 +94,19 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+const mapStateToProps = (state) => {
+  const {
+    cart,
+    products,
+    dataLoading,
+    fetchError,
+  } = state;
+
+  return {
+    cart,
+    products,
+    dataLoading,
+    fetchError,
+  };
+};
+export default connect(mapStateToProps)(ProductList);

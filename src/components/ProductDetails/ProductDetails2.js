@@ -2,22 +2,49 @@ import React, { Component } from 'react';
 import Loader from '../Loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ProductDetails.scss';
-import ProductSpecs from '../ProductSpecs';
-import * as actions from '../../redux/actions';
-import { connect } from 'react-redux';
 
+const baseURL =
+  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones';
 const imagesURL =
   'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/';
 
+const titles = {
+  additionalFeatures: 'Additional Features',
+  battery: 'Battery',
+  android: 'Android',
+  storage: 'Storage',
+  camera: 'Camera',
+  display: 'Display',
+  sizeAndWeight: 'Size and Weight',
+  hardware: 'Hardware',
+  availability: 'Availability and Networks',
+  connectivity: 'Connectivity',
+};
+
+const keysToSkip = ['id', 'images', 'name', 'description'];
+
 class ProductDetails extends Component {
   state = {
+    data: null,
+    error: '',
     bigImg: '',
   };
-
   componentDidMount() {
     const productID = this.props.match.params.id;
-    console.log(productID);
-    this.props.dispatch(actions.getProductDetails(productID));
+    const dataURL = `${baseURL}/${productID}.json`;
+
+    fetch(dataURL)
+      .then(response => {
+        if (response.status === 404) throw new Error('Failed to load data!');
+        return response.json();
+      })
+      .then(product =>
+        this.setState({
+          data: product,
+          bigImg: imagesURL + product.images[0],
+        })
+      )
+      .catch(error => this.setState({ error: error.message }));
   }
 
   //image gallery handler
@@ -27,16 +54,44 @@ class ProductDetails extends Component {
     });
   };
 
-  render() {
-    const { data, dataLoading, fetchError } = this.props;
-    const { bigImg } = this.state;
+  //RENDER SPECS FOR PRODUCT FROM json object
+  renderFeatureData(key, data) {
+    let contents = null;
 
-    if (dataLoading) {
-      return <Loader/>;
+    if (keysToSkip.includes(key)) {
+      return null;
     }
 
-    if (fetchError) {
-      return <div>{fetchError}</div>;
+    if (typeof data === 'string' || typeof data === 'number') {
+      contents = data;
+    } else if (Array.isArray(data)) {
+      contents = data.join(', ');
+    } else if (typeof data === 'object' && data) {
+      contents = Object.keys(data)
+        .map(subKey => this.renderFeatureData(subKey, data[subKey]));
+
+    } else if (typeof data === 'boolean') {
+      contents = data ? '✓' : '✘';
+    }
+
+    return !key ? contents : (
+      <div key={key} className="product__specs-item">
+        <h5 className="d-block text-capitalize">
+          {titles[key] || key}
+        </h5>
+        <div>{contents}</div>
+      </div>
+    );
+  }
+
+  render() {
+    const { data, bigImg, error } = this.state;
+
+    if (error) {
+      return <h1 style={{ color: 'red' }}>{error}</h1>;
+    }
+    if (!data) {
+      return <Loader/>;
     }
 
     const productImages = data.images.map(item => imagesURL + item);
@@ -74,43 +129,10 @@ class ProductDetails extends Component {
           </div>
         </div>
         <div className="product__specs row py-4">
-          <div className="container-fluid d-flex flex-wrap">
-            <ProductSpecs
-              title="Availability and Networks"
-              specArrName="Availability"
-              value={data.availability}
-            />
-            <ProductSpecs title="Battery" value={data.battery} />
-            <ProductSpecs title="Storage and Memory" value={data.storage} />
-            <ProductSpecs title="Connectivity" value={data.connectivity} />
-            <ProductSpecs title="Android" value={data.android} />
-            <ProductSpecs title="Size and Weight" value={data.sizeAndWeight} />
-            <ProductSpecs title="Display" value={data.display} />
-            <ProductSpecs title="Hardware" value={data.hardware} />
-            <ProductSpecs title="Camera" value={data.camera} />
-            <ProductSpecs
-              title="Additional Features"
-              value={data.additionalFeatures}
-            />
-          </div>
+          {this.renderFeatureData(null, data)}
         </div>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  const {
-    productDetails,
-    dataLoading,
-    fetchError,
-  } = state;
-
-  return {
-    productDetails,
-    dataLoading,
-    fetchError,
-  };
-};
-
-export default connect(mapStateToProps)(ProductDetails);
+export default ProductDetails;
