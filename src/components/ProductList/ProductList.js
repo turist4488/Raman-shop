@@ -24,28 +24,29 @@ class ProductList extends Component {
 
   handleSelectSortMethod = e => {
     this.setState({
-      sortType: e.target.value
-    })
+      sortType: e.target.value,
+    });
   };
 
-  getSortComparator = (type) => {
+  getSortComparator = type => {
     switch (type) {
-      case 'newest': return (a,b)=>{
-        return b.age - a.age
-      };
-      case 'alphabetical': return (a,b)=>{
-        return (a.name > b.name) - (a.name < b.name)
-      };
+      case 'newest':
+        return (a, b) => {
+          return b.age - a.age;
+        };
+      case 'alphabetical':
+        return (a, b) => {
+          return (a.name > b.name) - (a.name < b.name);
+        };
+      default:
+        return (a, b) => {
+          return (a.name > b.name) - (a.name < b.name);
+        };
     }
   };
 
   render() {
-
-    const {
-      products,
-      dataLoading,
-      fetchError,
-    } = this.props;
+    const { products, dataLoading, fetchError } = this.props;
 
     const { searchQuery, sortType } = this.state;
 
@@ -57,9 +58,7 @@ class ProductList extends Component {
     }
 
     if (fetchError) {
-      return (
-        <div>{fetchError}</div>
-      );
+      return <div>{fetchError}</div>;
     }
 
     return (
@@ -71,7 +70,7 @@ class ProductList extends Component {
             handleSelectBtn={this.handleSelectSortMethod}
           />
           <div className="col-md-12 mx-auto">
-            <div className="d-flex product-list justify-content-between flex-wrap">
+            <div className="d-flex product-list justify-content-around flex-wrap">
               {products
                 .filter(i =>
                   i.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -94,13 +93,8 @@ class ProductList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {
-    cart,
-    products,
-    dataLoading,
-    fetchError,
-  } = state;
+const mapStateToProps = state => {
+  const { cart, products, dataLoading, fetchError } = state;
 
   return {
     cart,

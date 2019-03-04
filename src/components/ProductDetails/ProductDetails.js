@@ -16,7 +16,6 @@ class ProductDetails extends Component {
 
   componentDidMount() {
     const productID = this.props.match.params.id;
-    console.log(productID);
     this.props.dispatch(actions.getProductDetails(productID));
   }
 
@@ -28,18 +27,18 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { data, dataLoading, fetchError } = this.props;
+    const { productDetails, dataLoading, fetchError } = this.props;
     const { bigImg } = this.state;
 
-    if (dataLoading) {
-      return <Loader/>;
+    if (!productDetails || dataLoading) {
+      return <Loader />;
     }
 
     if (fetchError) {
       return <div>{fetchError}</div>;
     }
 
-    const productImages = data.images.map(item => imagesURL + item);
+    const productImages = productDetails.images.map(item => imagesURL + item);
 
     return (
       <div className="product__details container-fluid">
@@ -47,18 +46,20 @@ class ProductDetails extends Component {
           <div className="col-sm-4 align-self-start product__big-img mr-4">
             <img
               className="p-3 d-block w-100 h-auto"
-              src={bigImg}
+              src={bigImg ? bigImg : productImages[0]}
               alt="product"
             />
           </div>
           <div className="col-sm-8 flex-shrink-1 product__description">
-            <h1 className="product__details-title">{data.name}</h1>
-            <p className="product__details-text">{data.description}</p>
+            <h1 className="product__details-title">{productDetails.name}</h1>
+            <p className="product__details-text">
+              {productDetails.description}
+            </p>
             <ul className="product__thumbs row p-0">
               {productImages.map((item, i) => {
                 return (
                   <li
-                    key={data.id + (i + 1)}
+                    key={productDetails.id + (i + 1)}
                     className={
                       bigImg === item
                         ? 'product__thumbs-item product__thumbs-item--active col-sm-2 p-2 m-2 list-unstyled'
@@ -66,7 +67,11 @@ class ProductDetails extends Component {
                     }
                     onClick={() => this.handleImgClick(item)}
                   >
-                    <img className="d-block w-100 h-auto" src={item} alt="product" />
+                    <img
+                      className="d-block w-100 h-auto"
+                      src={item}
+                      alt="product"
+                    />
                   </li>
                 );
               })}
@@ -78,19 +83,28 @@ class ProductDetails extends Component {
             <ProductSpecs
               title="Availability and Networks"
               specArrName="Availability"
-              value={data.availability}
+              value={productDetails.availability}
             />
-            <ProductSpecs title="Battery" value={data.battery} />
-            <ProductSpecs title="Storage and Memory" value={data.storage} />
-            <ProductSpecs title="Connectivity" value={data.connectivity} />
-            <ProductSpecs title="Android" value={data.android} />
-            <ProductSpecs title="Size and Weight" value={data.sizeAndWeight} />
-            <ProductSpecs title="Display" value={data.display} />
-            <ProductSpecs title="Hardware" value={data.hardware} />
-            <ProductSpecs title="Camera" value={data.camera} />
+            <ProductSpecs title="Battery" value={productDetails.battery} />
+            <ProductSpecs
+              title="Storage and Memory"
+              value={productDetails.storage}
+            />
+            <ProductSpecs
+              title="Connectivity"
+              value={productDetails.connectivity}
+            />
+            <ProductSpecs title="Android" value={productDetails.android} />
+            <ProductSpecs
+              title="Size and Weight"
+              value={productDetails.sizeAndWeight}
+            />
+            <ProductSpecs title="Display" value={productDetails.display} />
+            <ProductSpecs title="Hardware" value={productDetails.hardware} />
+            <ProductSpecs title="Camera" value={productDetails.camera} />
             <ProductSpecs
               title="Additional Features"
-              value={data.additionalFeatures}
+              value={productDetails.additionalFeatures}
             />
           </div>
         </div>
@@ -99,12 +113,8 @@ class ProductDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {
-    productDetails,
-    dataLoading,
-    fetchError,
-  } = state;
+const mapStateToProps = state => {
+  const { productDetails, dataLoading, fetchError } = state;
 
   return {
     productDetails,

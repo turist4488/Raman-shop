@@ -28,6 +28,7 @@ export default function(state = initialState, action) {
       };
 
     case GET_DETAILS_SUCCESS:
+      console.log(state);
       return {
         ...state,
         productDetails: action.productDetails,

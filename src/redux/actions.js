@@ -11,7 +11,6 @@ const productDetailsUrl =
 export function getProducts() {
   return (dispatch) => {
     dispatch({ type: GET_DATA_REQUEST });
-
     fetch(productsUrl)
       .then(response => {
         if (response.status !== 200) {
@@ -52,7 +51,6 @@ export function getProductDetails(id) {
           type: GET_DETAILS_SUCCESS,
           productDetails: dataJson,
         });
-        console.log(dataJson);
       })
       .catch(error => {
         dispatch({

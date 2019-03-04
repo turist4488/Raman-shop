@@ -28,7 +28,14 @@ class SpecItem extends Component {
                   </span>
                 ) : (
                   <span className="d-block spec-value">
-                    {Array.isArray(v[1]) ? v[1].map(i => <span>{i}<br/></span>) : v[1]}
+                    {Array.isArray(v[1])
+                      ? v[1].map(i => (
+                          <span>
+                            {i}
+                            <br />
+                          </span>
+                        ))
+                      : v[1]}
                   </span>
                 )}
               </div>

@@ -67,18 +67,18 @@ class ProductDetails extends Component {
     } else if (Array.isArray(data)) {
       contents = data.join(', ');
     } else if (typeof data === 'object' && data) {
-      contents = Object.keys(data)
-        .map(subKey => this.renderFeatureData(subKey, data[subKey]));
-
+      contents = Object.keys(data).map(subKey =>
+        this.renderFeatureData(subKey, data[subKey])
+      );
     } else if (typeof data === 'boolean') {
       contents = data ? '✓' : '✘';
     }
 
-    return !key ? contents : (
+    return !key ? (
+      contents
+    ) : (
       <div key={key} className="product__specs-item">
-        <h5 className="d-block text-capitalize">
-          {titles[key] || key}
-        </h5>
+        <h5 className="d-block text-capitalize">{titles[key] || key}</h5>
         <div>{contents}</div>
       </div>
     );
@@ -91,7 +91,7 @@ class ProductDetails extends Component {
       return <h1 style={{ color: 'red' }}>{error}</h1>;
     }
     if (!data) {
-      return <Loader/>;
+      return <Loader />;
     }
 
     const productImages = data.images.map(item => imagesURL + item);
@@ -121,7 +121,11 @@ class ProductDetails extends Component {
                     }
                     onClick={() => this.handleImgClick(item)}
                   >
-                    <img className="d-block w-100 h-auto" src={item} alt="product" />
+                    <img
+                      className="d-block w-100 h-auto"
+                      src={item}
+                      alt="product"
+                    />
                   </li>
                 );
               })}

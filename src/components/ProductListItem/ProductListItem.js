@@ -6,31 +6,34 @@ import { addToCart } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 class ProductListItem extends Component {
-
-  addItemToCart = (id) => {
+  addItemToCart = id => {
     this.props.dispatch(addToCart(id));
   };
 
   render() {
     const { id, imgURL, title, snippet, cart } = this.props;
+    const isInCart = cart.includes(id);
     return (
-      <div className="d-sm-flex col-sm-12 product-list__item position-relative align-items-center p-2">
-        <Link className="col-5" to={`/products/${id}`}>
-          <img className="w-100 h-auto" src={imgURL} alt="" />
+      <div className="product-list__item d-flex flex-wrap">
+        <Link className="d-block pt-3" to={`/products/${id}`}>
+          <img className="d-block mx-auto w-75 h-auto" src={imgURL} alt="" />
         </Link>
-        <div className="">
-          <Link to={`/products/${id}`}>
-            {title}
-          </Link>
-          <p>{snippet}</p>
+        <div className="w-100 d-flex product-list__item-bottom align-items-center">
+          <Link className="col-9 text-white font-weight-bold" to={`/products/${id}`}>{title}</Link>
+          {/*<p className="product-list__item-descr">{snippet}</p>*/}
+          <button
+            className={isInCart
+              ? "d-block to-cart-btn to-cart-btn--disabled py-2"
+              : "d-block to-cart-btn py-2"}
+            onClick={() => this.addItemToCart(id)}
+            disabled={isInCart}
+          >
+            <i className={isInCart
+              ? "fas fa-cart-arrow-down"
+              : "fas fa-cart-plus"}
+            > </i>
+          </button>
         </div>
-        <button
-          className="to-cart-btn font-weight-bold text-uppercase"
-          onClick={() => this.addItemToCart(id)}
-          disabled={cart.includes(id)}
-        >
-          to cart
-        </button>
       </div>
     );
   }
