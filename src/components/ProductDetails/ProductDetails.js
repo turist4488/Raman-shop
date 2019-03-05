@@ -41,9 +41,9 @@ class ProductDetails extends Component {
     const productImages = productDetails.images.map(item => imagesURL + item);
 
     return (
-      <div className="product__details container-fluid">
+      <div className="product__details container mb-5">
         <div className="d-flex mt-3">
-          <div className="col-sm-4 align-self-start product__big-img mr-4">
+          <div className="col-sm-4 align-self-start img-box-shadow product__big-img mr-4">
             <img
               className="p-3 d-block w-100 h-auto"
               src={bigImg ? bigImg : productImages[0]}
@@ -62,8 +62,8 @@ class ProductDetails extends Component {
                     key={productDetails.id + (i + 1)}
                     className={
                       bigImg === item
-                        ? 'product__thumbs-item product__thumbs-item--active col-sm-2 p-2 m-2 list-unstyled'
-                        : 'product__thumbs-item col-sm-2 p-2 m-2 list-unstyled'
+                        ? 'img-box-shadow product__thumbs-item product__thumbs-item--active col-sm-2 p-2 m-2 list-unstyled'
+                        : 'img-box-shadow product__thumbs-item col-sm-2 p-2 m-2 list-unstyled'
                     }
                     onClick={() => this.handleImgClick(item)}
                   >

@@ -13,6 +13,13 @@ export default function(state = initialState, action) {
         ...state,
         cart: [...state.cart, action.id],
       };
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        cart: [...state.cart].filter(item => {
+          return item.id !== action.id;
+        }),
+      };
 
     case GET_DATA_REQUEST:
       return {

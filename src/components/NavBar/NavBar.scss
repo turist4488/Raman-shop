@@ -4,6 +4,18 @@
   z-index: 99;
   background: #4f4a41;
 
+  &__logo {
+    letter-spacing: 2px;
+    span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: green;
+      &:nth-of-type(2n+1) {
+        color: yellow;
+      }
+    }
+  }
+
   &__cart-btn {
     color: #ffa;
     font-weight: bold;
@@ -18,27 +30,15 @@
 
     &-counter {
       text-align: center;
+      width: 22px;
       position: absolute;
       top: 0;
+      padding: 2px 0;
       font-size: 0.475em;
       right: 28px;
-      width: 20px;
-      height: 20px;
       border-radius: 50%;
       background-color: #85d8ce;
       color: #fff;
-    }
-  }
-}
-
-.logo {
-  letter-spacing: 2px;
-  span {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: green;
-    &:nth-of-type(2n+1) {
-      color: yellow;
     }
   }
 }

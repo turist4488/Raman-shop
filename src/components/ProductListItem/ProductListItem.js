@@ -6,13 +6,22 @@ import { addToCart } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 class ProductListItem extends Component {
-  addItemToCart = id => {
-    this.props.dispatch(addToCart(id));
+  addItemToCart = product => {
+    this.props.dispatch(addToCart(product));
   };
 
   render() {
     const { id, imgURL, title, snippet, cart } = this.props;
-    const isInCart = cart.includes(id);
+    const product = {
+      id,
+      imgURL,
+      title,
+    };
+
+    const isInCart = cart.find(item => {
+      return item.id === id;
+    });
+
     return (
       <div className="product-list__item d-flex flex-wrap">
         <Link className="d-block pt-3" to={`/products/${id}`}>
@@ -25,7 +34,7 @@ class ProductListItem extends Component {
             className={isInCart
               ? "d-block to-cart-btn to-cart-btn--disabled py-2"
               : "d-block to-cart-btn py-2"}
-            onClick={() => this.addItemToCart(id)}
+            onClick={() => this.addItemToCart(product)}
             disabled={isInCart}
           >
             <i className={isInCart

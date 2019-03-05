@@ -1,14 +1,16 @@
+.img-box-shadow {
+  box-shadow: 4px 0 8px 2px #6e6658;
+}
 .product {
 
   &__big-img {
-    border: 1px solid black;
     border-radius: 3px;
     height: auto;
   }
 
   &__details {
     &-title {
-      border-bottom: 2px solid rgba(0, 100, 0, 0.8);
+      border-bottom: 2px solid #4f4a41;
     }
     &-text {
       font-size: 14px;
@@ -18,13 +20,13 @@
   &__thumbs {
 
     &-item {
-      border: 1px solid black;
       border-radius: 3px;
+      transition: all 0.3s ease-in-out;
 
       &--active {
         border-width: 2px;
-        border-color: green;
-        box-shadow: 3px 3px 5px 2px rgba(0,200,0, 0.2);
+        box-shadow: 1px 0 3px 0 #6e6658;
+        transform: scale(0.95);
       }
       &:hover {
         cursor: pointer;
@@ -33,11 +35,11 @@
   }
 
   &__specs {
-    background-color: rgba(200, 200, 200, 0.2);
-    box-shadow: 2px 0 3px 2px grey;
+    background-color: rgba(133,216,206,0.4);
+    box-shadow: 2px 0 8px 2px #085078;
     margin-top: 20px;
     &-title {
-      border-bottom: 2px solid rgba(0, 100, 0, 0.8);
+      border-bottom: 2px solid #4f4a41;
     }
 
     &-item {
