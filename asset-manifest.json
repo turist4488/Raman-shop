@@ -1,15 +1,15 @@
 {
-  "main.css": "/Raman-shop/static/css/main.8c9c1a3f.chunk.css",
-  "main.js": "/Raman-shop/static/js/main.07e064db.chunk.js",
-  "main.js.map": "/Raman-shop/static/js/main.07e064db.chunk.js.map",
-  "runtime~main.js": "/Raman-shop/static/js/runtime~main.6f4e7bb5.js",
-  "runtime~main.js.map": "/Raman-shop/static/js/runtime~main.6f4e7bb5.js.map",
-  "static/css/2.8f940351.chunk.css": "/Raman-shop/static/css/2.8f940351.chunk.css",
-  "static/js/2.dc44dbe6.chunk.js": "/Raman-shop/static/js/2.dc44dbe6.chunk.js",
-  "static/js/2.dc44dbe6.chunk.js.map": "/Raman-shop/static/js/2.dc44dbe6.chunk.js.map",
-  "index.html": "/Raman-shop/index.html",
-  "precache-manifest.61cc874a27e9522c4eab422e19a89dba.js": "/Raman-shop/precache-manifest.61cc874a27e9522c4eab422e19a89dba.js",
-  "service-worker.js": "/Raman-shop/service-worker.js",
-  "static/css/2.8f940351.chunk.css.map": "/Raman-shop/static/css/2.8f940351.chunk.css.map",
-  "static/css/main.8c9c1a3f.chunk.css.map": "/Raman-shop/static/css/main.8c9c1a3f.chunk.css.map"
+  "main.css": "/store/static/css/main.8c9c1a3f.chunk.css",
+  "main.js": "/store/static/js/main.07e064db.chunk.js",
+  "main.js.map": "/store/static/js/main.07e064db.chunk.js.map",
+  "runtime~main.js": "/store/static/js/runtime~main.4df2ced0.js",
+  "runtime~main.js.map": "/store/static/js/runtime~main.4df2ced0.js.map",
+  "static/css/2.8f940351.chunk.css": "/store/static/css/2.8f940351.chunk.css",
+  "static/js/2.dc44dbe6.chunk.js": "/store/static/js/2.dc44dbe6.chunk.js",
+  "static/js/2.dc44dbe6.chunk.js.map": "/store/static/js/2.dc44dbe6.chunk.js.map",
+  "index.html": "/store/index.html",
+  "precache-manifest.f3f4d0c27e9f63a342e981d768f8c55b.js": "/store/precache-manifest.f3f4d0c27e9f63a342e981d768f8c55b.js",
+  "service-worker.js": "/store/service-worker.js",
+  "static/css/2.8f940351.chunk.css.map": "/store/static/css/2.8f940351.chunk.css.map",
+  "static/css/main.8c9c1a3f.chunk.css.map": "/store/static/css/main.8c9c1a3f.chunk.css.map"
 }
