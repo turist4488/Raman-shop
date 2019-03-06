@@ -4,23 +4,23 @@ self.__precacheManifest = [
     "url": "/Raman-shop/static/js/runtime~main.6f4e7bb5.js"
   },
   {
-    "revision": "25ca1f1f1edc9cde2700",
-    "url": "/Raman-shop/static/js/main.25ca1f1f.chunk.js"
+    "revision": "bc1a1a18856e7158a2ca",
+    "url": "/Raman-shop/static/js/main.bc1a1a18.chunk.js"
   },
   {
-    "revision": "ff07c56ca5422b73f33e",
-    "url": "/Raman-shop/static/js/2.ff07c56c.chunk.js"
+    "revision": "dc44dbe67d01e2df3f58",
+    "url": "/Raman-shop/static/js/2.dc44dbe6.chunk.js"
   },
   {
-    "revision": "25ca1f1f1edc9cde2700",
+    "revision": "bc1a1a18856e7158a2ca",
     "url": "/Raman-shop/static/css/main.8c9c1a3f.chunk.css"
   },
   {
-    "revision": "ff07c56ca5422b73f33e",
+    "revision": "dc44dbe67d01e2df3f58",
     "url": "/Raman-shop/static/css/2.8f940351.chunk.css"
   },
   {
-    "revision": "7f036f609c4966d74acd00541e9659aa",
+    "revision": "b9cb604165c1a865c7989f151d12388f",
     "url": "/Raman-shop/index.html"
   }
 ];
