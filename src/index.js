@@ -9,7 +9,7 @@ import store from './redux/store';
 const Root = (
 
     <Provider store={store}>
-      <Router>
+      <Router basename="/Raman-shop">
         <App />
       </Router>
     </Provider>
