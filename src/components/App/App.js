@@ -12,9 +12,9 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <Switch>
-          <Route component={Products} path="/" exact />
-          <Route component={Products} path="/products" />
-          <Route component={Cart} path="/cart" />
+          <Route component={Products} path="/Raman-shop" exact />
+          <Route component={Products} path="/Raman-shop/products" />
+          <Route component={Cart} path="/Raman-shop/cart" />
           <Route component={NotFound} />
         </Switch>
       </React.Fragment>
