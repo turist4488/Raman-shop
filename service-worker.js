@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Raman-shop/precache-manifest.da523526c35902fe26a5c172a91f4f86.js"
+  "/Raman-shop/precache-manifest.01bba5dcefe6f885c0cb5c1b627a24ec.js"
 );
 
 workbox.clientsClaim();
