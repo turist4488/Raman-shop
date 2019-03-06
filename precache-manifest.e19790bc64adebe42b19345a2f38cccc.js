@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/Raman-shop/static/css/2.8f940351.chunk.css"
   },
   {
-    "revision": "b37b9c4a095565e8b295d7e8fe65211e",
+    "revision": "7d9e95fff5e283a8e66b0115f63f5076",
     "url": "/Raman-shop/index.html"
   }
 ];
