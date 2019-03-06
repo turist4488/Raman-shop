@@ -7,7 +7,7 @@ class Products extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/Raman-shop" component={ProductList} exact />
+        <Route path="/" component={ProductList} exact />
         <Route path="/Raman-shop/products" component={ProductList} exact />
         <Route path="/Raman-shop/products/:id" component={ProductDetails} />
       </Switch>
