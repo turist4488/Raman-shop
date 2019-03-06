@@ -5,7 +5,6 @@ import { removeFromCart } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 class Cart extends Component {
-
   removeFromCart = id => {
     this.props.dispatch(removeFromCart(id));
   };
@@ -18,14 +17,18 @@ class Cart extends Component {
         <div className="h-100 container-fluid">
           <h1 className="text-center mt-5">ТУТ МОЖЕ БУТИ ВАША РЕКЛАМА</h1>
         </div>
-      )
+      );
     }
     return (
       <div className="container cart">
         {cart.map(item => {
           return (
             <div key={item.id} className="row cart__item py-3 pr-3 my-4">
-              <img className="col-2 cart__item-img" src={item.imgURL} alt="product"/>
+              <img
+                className="col-2 cart__item-img"
+                src={item.imgURL}
+                alt="product"
+              />
               <h4 className="col-5 cart__item-title">{item.title}</h4>
               <button
                 className="cart__item-cancel-btn d-inline-block p-0 ml-auto align-self-center"

@@ -6,24 +6,24 @@ import './NavBar.scss';
 class NavBar extends Component {
   render() {
     const { cart, dataLoading } = this.props;
-    if(dataLoading) {
-      return (<div> </div>);
+    if (dataLoading) {
+      return <div> </div>;
     }
     return (
       <div className="container-fluid nav-bar">
         <div className="d-flex container align-items-center py-2">
-          <Link className="d-inline-block nav-link p-0 mr-auto nav-bar__logo" to="/">
-            <span>M</span><span>A</span>
-            <span>G</span>
-            <span>A</span><span>Z</span>
-          </Link>
           <Link
-            className="nav-bar__cart-btn d-inline-block ml-auto"
-            to="/cart"
+            className="d-inline-block nav-link p-0 mr-auto nav-bar__logo"
+            to="/"
           >
-            <span className="nav-bar__cart-btn-counter">
-              {cart.length}
-            </span>
+            <span>M</span>
+            <span>A</span>
+            <span>G</span>
+            <span>A</span>
+            <span>Z</span>
+          </Link>
+          <Link className="nav-bar__cart-btn d-inline-block ml-auto" to="/cart">
+            <span className="nav-bar__cart-btn-counter">{cart.length}</span>
             <i className="fas fa-shopping-basket"> </i>
           </Link>
         </div>

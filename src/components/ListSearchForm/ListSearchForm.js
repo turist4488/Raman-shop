@@ -24,8 +24,15 @@ class ListSearchForm extends Component {
             name=""
             onChange={handleSelectBtn}
           >
-            <option className="search-form__criteria-option" value="alphabetical">Alphabetical</option>
-            <option className="search-form__criteria-option" value="newest">Newest</option>
+            <option
+              className="search-form__criteria-option"
+              value="alphabetical"
+            >
+              Alphabetical
+            </option>
+            <option className="search-form__criteria-option" value="newest">
+              Newest
+            </option>
           </select>
         </div>
       </div>
