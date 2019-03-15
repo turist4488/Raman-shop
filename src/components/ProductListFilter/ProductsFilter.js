@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ProductsFilter.scss';
 import { connect } from 'react-redux';
-import {addFilter, removeFilter} from '../../redux/actions';
+import { addFilter, removeFilter } from '../../redux/actions';
 
 const FILTERS = [
   {
     category: 'producerName',
     name: 'Producer',
-    items: ['Samsung','Dell','Motorola','LG','Google','Other']
+    items: ['Samsung', 'Dell', 'Motorola', 'LG', 'Google', 'Other'],
   },
   {
     category: 'operatingSystem',
     name: 'OS',
-    items: ['IOS','Android']
-  }
+    items: ['IOS', 'Android'],
+  },
 ];
 
 class ProductsFilter extends Component {
-  addFilter = (name) => {
-    this.props.dispatch(addFilter(name))
+  addFilter = name => {
+    this.props.dispatch(addFilter(name));
   };
 
-  removeFilter = (name) => {
+  removeFilter = name => {
     this.props.dispatch(removeFilter(name));
   };
 
@@ -42,24 +42,24 @@ class ProductsFilter extends Component {
                 {filter.name}
               </span>
               <ul key={filter.category} className="ml-3 py-2 list-unstyled">
-              {filter.items.map(item => {
-                return (
-                   <li className="products-filters__item-value">
-                       <input
-                         className="products-filters__item-check"
-                         type="checkbox"
-                         id={item}
-                         onChange={(e) => this.handleFilterChecked(e, item)}
-                       />
-                     <label
-                       className="products-filters__item-label pl-4 ml-1 mb-0"
-                       htmlFor={item}
-                     >
-                       {item}
-                     </label>
-                   </li>
-                )
-              })}
+                {filter.items.map(item => {
+                  return (
+                    <li className="products-filters__item-value">
+                      <input
+                        className="products-filters__item-check"
+                        type="checkbox"
+                        id={item}
+                        onChange={e => this.handleFilterChecked(e, item)}
+                      />
+                      <label
+                        className="products-filters__item-label pl-4 ml-1 mb-0"
+                        htmlFor={item}
+                      >
+                        {item}
+                      </label>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
           );
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
   const { filters } = state;
 
   return {
-    filters
+    filters,
   };
 };
 export default connect(mapStateToProps)(ProductsFilter);

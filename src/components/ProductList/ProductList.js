@@ -33,8 +33,8 @@ class ProductList extends Component {
     filters.forEach(i => {
       Object.values(product).forEach(v => {
         if (typeof v === 'string')
-          return v.toLowerCase().includes(i.toLowerCase())
-      })
+          return v.toLowerCase().includes(i.toLowerCase());
+      });
     });
   };
 

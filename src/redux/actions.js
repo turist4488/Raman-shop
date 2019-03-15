@@ -9,7 +9,7 @@ const productDetailsUrl =
   'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones';
 
 export function getProducts() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: GET_DATA_REQUEST });
     fetch(productsUrl)
       .then(response => {
@@ -31,11 +31,11 @@ export function getProducts() {
           error: error.message,
         });
       });
-  }
+  };
 }
 
 export function getProductDetails(id) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: GET_DATA_REQUEST });
 
     fetch(`${productDetailsUrl}/${id}.json`)
@@ -58,7 +58,7 @@ export function getProductDetails(id) {
           error: error.message,
         });
       });
-  }
+  };
 }
 
 //CART FUNCTIONALITY
