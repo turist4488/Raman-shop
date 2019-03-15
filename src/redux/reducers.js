@@ -25,11 +25,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filters: [...state.filters, action.name],
-        products: [...state.products].filter(item => {
-          return JSON.stringify(item)
-            .toLowerCase()
-            .includes(action.name.toLowerCase());
-        }),
       };
 
     case 'REMOVE_FILTER':

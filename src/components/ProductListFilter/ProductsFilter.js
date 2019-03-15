@@ -44,7 +44,10 @@ class ProductsFilter extends Component {
               <ul key={filter.category} className="ml-3 py-2 list-unstyled">
                 {filter.items.map(item => {
                   return (
-                    <li className="products-filters__item-value">
+                    <li
+                      key={item.toLowerCase()}
+                      className="products-filters__item-value"
+                    >
                       <input
                         className="products-filters__item-check"
                         type="checkbox"

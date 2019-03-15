@@ -29,15 +29,6 @@ class ProductList extends Component {
     });
   };
 
-  isMatchToFilter = (filters, product) => {
-    filters.forEach(i => {
-      Object.values(product).forEach(v => {
-        if (typeof v === 'string')
-          return v.toLowerCase().includes(i.toLowerCase());
-      });
-    });
-  };
-
   getSortComparator = type => {
     switch (type) {
       case 'newest':
@@ -55,8 +46,23 @@ class ProductList extends Component {
     }
   };
 
+  getFilteredProducts = (filters, products) => {
+    let result = [];
+    filters.forEach(f => {
+      products.forEach(p => {
+        if (
+          JSON.stringify(p)
+            .toLowerCase()
+            .includes(f.toLowerCase())
+        )
+          result.push(p);
+      });
+    });
+    return result;
+  };
+
   render() {
-    const { products, dataLoading, fetchError, filters } = this.props;
+    const { products, dataLoading, filters, fetchError } = this.props;
 
     const { searchQuery, sortType } = this.state;
 
@@ -71,6 +77,9 @@ class ProductList extends Component {
       return <div>{fetchError}</div>;
     }
 
+    const filteredProducts = filters.length
+      ? this.getFilteredProducts(filters, products)
+      : products;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -82,7 +91,7 @@ class ProductList extends Component {
           <div className="col-md-12 mx-auto d-flex">
             <ProductFilter />
             <div className="d-flex product-list justify-content-around flex-wrap">
-              {products
+              {filteredProducts
                 .filter(i =>
                   i.name.toLowerCase().includes(searchQuery.toLowerCase())
                 )
@@ -105,13 +114,13 @@ class ProductList extends Component {
 }
 
 const mapStateToProps = state => {
-  const { cart, products, filters, dataLoading, fetchError } = state;
+  const { cart, products, dataLoading, filters, fetchError } = state;
 
   return {
     cart,
     products,
-    filters,
     dataLoading,
+    filters,
     fetchError,
   };
 };
