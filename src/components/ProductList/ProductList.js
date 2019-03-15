@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductListItem from '../ProductListItem';
 import ListSearchForm from '../ListSearchForm';
+import ProductFilter from '../ProductListFilter/ProductsFilter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from '../Loader';
 import * as actions from '../../redux/actions';
@@ -28,6 +29,15 @@ class ProductList extends Component {
     });
   };
 
+  isMatchToFilter = (filters, product) => {
+    filters.forEach(i => {
+      Object.values(product).forEach(v => {
+        if (typeof v === 'string')
+          return v.toLowerCase().includes(i.toLowerCase())
+      })
+    });
+  };
+
   getSortComparator = type => {
     switch (type) {
       case 'newest':
@@ -46,7 +56,7 @@ class ProductList extends Component {
   };
 
   render() {
-    const { products, dataLoading, fetchError } = this.props;
+    const { products, dataLoading, fetchError, filters } = this.props;
 
     const { searchQuery, sortType } = this.state;
 
@@ -69,7 +79,8 @@ class ProductList extends Component {
             handleInput={this.handleSearchQuery}
             handleSelectBtn={this.handleSelectSortMethod}
           />
-          <div className="col-md-12 mx-auto">
+          <div className="col-md-12 mx-auto d-flex">
+            <ProductFilter />
             <div className="d-flex product-list justify-content-around flex-wrap">
               {products
                 .filter(i =>
@@ -94,11 +105,12 @@ class ProductList extends Component {
 }
 
 const mapStateToProps = state => {
-  const { cart, products, dataLoading, fetchError } = state;
+  const { cart, products, filters, dataLoading, fetchError } = state;
 
   return {
     cart,
     products,
+    filters,
     dataLoading,
     fetchError,
   };

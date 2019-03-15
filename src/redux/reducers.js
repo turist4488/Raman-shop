@@ -21,6 +21,23 @@ export default function(state = initialState, action) {
         }),
       };
 
+    case 'ADD_FILTER':
+      return {
+        ...state,
+        filters: [...state.filters, action.name],
+        products: [...state.products].filter(item => {
+         return JSON.stringify(item).toLowerCase().includes(action.name.toLowerCase())
+        }),
+      };
+
+    case 'REMOVE_FILTER':
+      return {
+        ...state,
+        filters: [...state.filters].filter(item => {
+          return item.name === action.name;
+        }),
+      };
+
     case GET_DATA_REQUEST:
       return {
         ...state,

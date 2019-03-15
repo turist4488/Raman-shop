@@ -75,3 +75,17 @@ export function removeFromCart(id) {
     id,
   };
 }
+
+export function addFilter(name) {
+  return {
+    type: 'ADD_FILTER',
+    name,
+  };
+}
+
+export function removeFilter(name) {
+  return {
+    type: 'REMOVE_FILTER',
+    name,
+  };
+}
