@@ -4,9 +4,9 @@ export const GET_DATA_FAILURE = 'GET_DATA_FAILURE';
 export const GET_DETAILS_SUCCESS = 'GET_DETAILS_SUCCESS';
 
 const productsUrl =
-  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones/phones.json';
+  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/api/phones.json';
 const productDetailsUrl =
-  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/phones';
+  'https://raw.githubusercontent.com/mate-academy/phone-catalogue-static/master/api/phones';
 
 export function getProducts() {
   return dispatch => {
