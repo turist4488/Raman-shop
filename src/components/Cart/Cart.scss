@@ -1,0 +1,23 @@
+.cart {
+  transition: all 0.3s;
+  &__item {
+    align-items: flex-start;
+    transition: all 0.3s;
+    box-shadow: 5px -3px 10px 2px #6e6658;
+    &-img {
+      width: 70px;
+      max-width: 100%;
+      height: auto;
+    }
+    &-cancel-btn {
+      background: none;
+      font-size: 3em;
+      border: none;
+      line-height: 0;
+      color: #112d32;
+      &:hover i {
+        color: darkred;
+      }
+    }
+  }
+}

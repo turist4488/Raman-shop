@@ -1,0 +1,51 @@
+.img-box-shadow {
+  box-shadow: 4px 0 8px 2px #6e6658;
+}
+.product {
+
+  &__big-img {
+    border-radius: 3px;
+    height: auto;
+  }
+
+  &__details {
+    &-title {
+      border-bottom: 2px solid #4f4a41;
+    }
+    &-text {
+      font-size: 14px;
+    }
+  }
+
+  &__thumbs {
+
+    &-item {
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+
+      &--active {
+        border-width: 2px;
+        box-shadow: 1px 0 3px 0 #6e6658;
+        transform: scale(0.95);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__specs {
+    background-color: rgba(133,216,206,0.4);
+    box-shadow: 2px 0 8px 2px #085078;
+    margin-top: 20px;
+    &-title {
+      border-bottom: 2px solid #4f4a41;
+    }
+
+    &-item {
+      width: 200px;
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+  }
+}
